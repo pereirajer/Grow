@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Schedule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .dropdown-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+            font-size: 14px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .staff {
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="day-title">Schedule</h1>
+        <div class="dropdown-container">
+            <label for="day-select">Choose a day: </label>
+            <select id="day-select">
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+            </select>
+        </div>
+
+        <h2>Activities</h2>
+        <table id="activities-table">
+            <!-- Activities table will be populated by JavaScript -->
+        </table>
+    </div>
+
+    <script>
+        const schedules = {
+            Monday: {
+                staff: [
+                    { room: 'Room 1', staff: 'Vanessa L' },
+                    { room: 'Room 2', staff: 'Sophia' },
+                    { room: 'Room 3', staff: 'Lucile' },
+                    { room: 'Room 4', staff: 'Pauline' },
+                    { room: 'Room 5', staff: 'Marie' },
+                    { room: 'Room 6', staff: 'Jaida/Vanessa A' },
+                    { room: 'Room 7', staff: 'Savannah/Callie' },
+                    { room: 'Room 8', staff: 'Courtenay/Steve' },
+                    { room: 'Room 9', staff: 'Debbie' }
+                ],
+                activities: [
+                    ['8:30-9:15', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro'],
+                    ['9:15-9:45', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting'],
+                    ['9:45-10:15', 'Computer Lab', 'Movement', 'What is the Boston Symphony?', 'Movement', 'Staff Choice', 'Belcher Park', 'Dedham Library', 'War Memorial Park', 'Volunteering Salvation Army'],
+                    ['10:15-10:45', 'Guitar Lesson with Brian!', 'Computer Lab', '', 'Sewing', 'Movement', '', '', '', ''],
+                    ['10:45-11:15', '', 'Write a song or poem as a Group', 'Computer Lab', '', 'How to search for a Job', '', '', '', ''],
+                    ['11:15-11:45', 'Movement', '', 'Movement', 'Computer Lab', '', '', '', '', ''],
+                    ['11:45-12:15', 'Lunch 1', 'Lunch 1', 'Lunch 1', 'Staff Choice', 'Computer Lab', 'Lunch', 'Lunch', 'Lunch', 'Lunch'],
+                    ['12:15-12:45', 'What instruments would you include in your band?', 'Research famous musicians', 'What is your favorite band?', 'Lunch 2', 'Lunch 2', '', '', '', ''],
+                    ['12:45-1:15', '', '', '', 'Sewing', 'What is your dream job?', 'Stoughton YMCA', 'Houghton\'s Pond', 'Stoughton Library', 'Barnes and Noble'],
+                    ['1:15-1:45', 'Staff Choice', 'Staff Choice', 'Staff Choice', '', '', '', '', '', ''],
+                    ['1:45-2:15', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time'],
+                    ['2:15-2:45', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)']
+                ]
+            },
+            Tuesday: {
+                staff: [
+                    { room: 'Room 1', staff: 'Savannah' },
+                    { room: 'Room 2', staff: 'Callie' },
+                    { room: 'Room 3', staff: 'Debbie' },
+                    { room: 'Room 4', staff: 'Peter' },
+                    { room: 'Room 5', staff: 'Marie' },
+                    { room: 'Room 6', staff: 'Vanessa L/Steve' },
+                    { room: 'Room 7', staff: 'Marc/Vanessa A' },
+                    { room: 'Room 8', staff: 'Sophia/Courtenay' }
+                ],
+                activities: [
+                    ['8:30-9:15', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro'],
+                    ['9:15-9:45', 'Music Therapy 9:15-10:00\nMorning Meeting 10:00-10:15', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting'],
+                    ['9:45-10:15', 'Transition 9:45-10:00\nMusic Therapy 10:00-10:45', 'Healthy Lifestyle Discussion', 'Computer Lab', 'Staff Choice', 'Stoughton YMCA', 'Glen Echo Park', 'Webb Memorial'],
+                    ['10:15-10:45', 'Zumba with Elvie!', '', '', 'Health and Nutrition Discussion', 'Resume Writing', '', '', ''],
+                    ['10:45-11:15', '', 'Health and Nutrition Discussion', 'Music Therapy 10:45-11:30\nTransition 11:30-11:45', '', '', '', '', ''],
+                    ['11:15-11:45', 'Computer Lab', '', 'Transition 11:15-11:30\nMusic Therapy 11:30-12:15', 'Movement', '', '', '', ''],
+                    ['11:45-12:15', 'Lunch 1', 'Lunch 1', 'Lunch 1', '', 'Computer Lab', 'Lunch', 'Lunch', 'Lunch'],
+                    ['12:15-12:45', 'Healthy Lifestyle Discussion', 'Computer Lab', 'Create your own exercise plan for the week!', 'Lunch 2', 'Lunch 2', '', '', ''],
+                    ['12:45-1:15', '', 'Research healthy recipes', '', 'Research healthy recipes', 'Transition 12:45-1:00\nMusic Therapy 1:00-1:45', 'Coffee Social', 'Crescent Ridge', 'YMCA or library'],
+                    ['1:15-1:45', 'Staff Choice', '', 'Computer Lab', '', '', '', '', ''],
+                    ['1:45-2:15', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time'],
+                    ['2:15-2:45', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)']
+                ]
+            },
+            Wednesday: {
+                staff: [
+                    { room: 'Room 1', staff: 'Vanessa L' },
+                    { room: 'Room 2', staff: 'Peter' },
+                    { room: 'Room 3', staff: 'Maria' },
+                    { room: 'Room 4', staff: 'Pauline' },
+                    { room: 'Room 5', staff: 'Marie' },
+                    { room: 'Room 6', staff: 'Savannah/Steve' },
+                    { room: 'Room 7', staff: 'Elvie/Jaida' },
+                    { room: 'Room 8', staff: 'Callie/Sophia' },
+                    { room: 'Room 9', staff: 'Courtenay/Debbie' }
+                ],
+                activities: [
+                    ['8:30-9:15', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro'],
+                    ['9:15-9:45', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting'],
+                    ['9:45-10:15', 'Computer Lab', 'Movement', 'Paint kindness rocks', 'Movement', 'Staff Choice', 'War Memorial Park', 'Stoughton YMCA', 'McGolf', 'Webb Memorial'],
+                    ['10:15-10:45', 'Paint kindness rocks', 'Computer Lab', '', 'Sewing', 'Movement', '', '', '', ''],
+                    ['10:45-11:15', '', 'Healthy Relationships with Manny!', 'Computer Lab', '', 'Interview Skills', '', '', '', ''],
+                    ['11:15-11:45', 'Movement', '', 'Movement', 'Computer Lab', '', '', '', '', ''],
+                    ['11:45-12:15', 'Lunch 1', 'Lunch 1', 'Lunch 1', 'Staff Choice', 'Computer Lab', 'Lunch', 'Lunch', 'Lunch', 'Lunch'],
+                    ['12:15-12:45', 'Plan a random act of kindness', 'Why is it important to be kind?', 'Plan a random act of kindness', 'Lunch 2', 'Lunch 2', '', '', '', ''],
+                    ['12:45-1:15', '', '', '', 'Sewing', 'Practice mock interviews/watch videos', 'Houghton\'s Pond', 'Ikea/Powers Farm', 'Forge Pond Park', 'Milton Library'],
+                    ['1:15-1:45', 'Staff Choice', 'Staff Choice', 'Staff Choice', '', '', '', '', '', ''],
+                    ['1:45-2:15', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time'],
+                    ['2:15-2:45', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)']
+                ]
+            },
+            Thursday: {
+                staff: [
+                    { room: 'Room 1', staff: 'Courtenay' },
+                    { room: 'Room 2', staff: 'Lucile' },
+                    { room: 'Room 3', staff: 'Vanessa A' },
+                    { room: 'Room 4', staff: 'Pauline' },
+                    { room: 'Room 5', staff: 'Sophia' },
+                    { room: 'Room 6', staff: 'Marie/Vanessa L' },
+                    { room: 'Room 7', staff: 'Callie/Debbie' },
+                    { room: 'Room 8', staff: 'Savannah/Steve' },
+                    { room: 'Room 9', staff: 'Harrison' }
+                ],
+                activities: [
+                    ['8:30-9:15', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro'],
+                    ['9:15-9:45', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting'],
+                    ['9:45-10:15', 'Basketball drills in extra space or outside at hoop', 'Staff Choice', 'Movement', 'Staff Choice', 'Computer Lab', 'West Bridgewater Library', 'Holbrook Library', 'Wollaston Beach', 'Houghton\'s Pond'],
+                    ['10:15-10:45', '', 'Transition 10:15-10:30\nASD Fit 10:30-11:00\nTransition 11:00-11:15', 'Staff Choice', 'Computer Lab', 'Staff Choice', '', '', '', ''],
+                    ['10:45-11:15', 'Computer Lab', '', 'Podcast group with Marc!', 'Sewing', 'Transition 10:45-11:00\nASD Fit 11:00-11:30\nTransition 11:30-11:45', '', '', '', ''],
+                    ['11:15-11:45', 'Movement', 'Computer Lab', '', '', '', '', '', '', ''],
+                    ['11:45-12:15', 'Lunch 1', 'Lunch 1', 'Lunch 1', 'Movement', 'Staff Choice', 'Lunch', 'Lunch', 'Lunch', 'Lunch'],
+                    ['12:15-12:45', 'The history of the Boston Celtics', 'Basketball drills in extra space or outside at hoop', 'Watch slam dunk competitions', 'Lunch 2', 'Lunch 2', '', '', '', ''],
+                    ['12:45-1:15', '', '', '', 'Sewing', 'Workplace attire and presentation', 'Grocery Shopping', 'Faxon Park', 'Stoughton YMCA', 'Antique Store'],
+                    ['1:15-1:45', 'Staff Choice', 'Staff Choice', 'Computer Lab', '', '', '', '', '', ''],
+                    ['1:45-2:15', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time'],
+                    ['2:15-2:45', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)']
+                ]
+            },
+            Friday: {
+                staff: [
+                    { room: 'Room 1', staff: 'TEMP TBD' },
+                    { room: 'Room 2', staff: 'Jaida' },
+                    { room: 'Room 3', staff: 'Vanessa L' },
+                    { room: 'Room 4', staff: 'Pauline' },
+                    { room: 'Room 5', staff: 'Marie' },
+                    { room: 'Room 6', staff: 'Manny/Savannah' },
+                    { room: 'Room 7', staff: 'Callie/Steve' },
+                    { room: 'Room 8', staff: 'Sophia/Courtenay' },
+                    { room: 'Room 9', staff: 'Vanessa A' }
+                ],
+                activities: [
+                    ['8:30-9:15', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro', 'Choice Board Transition/Bistro'],
+                    ['9:15-9:45', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting', 'Morning Meeting'],
+                    ['9:45-10:15', 'Computer Lab', 'Movement', 'Fun Friday - Board games and puzzles', 'Movement', 'Staff Choice', 'Fox 25 Tour!!', 'Capron Zoo', 'Capron Zoo', 'Volunteering Salvation Army'],
+                    ['10:15-10:45', 'Fun Friday - Wii Games in the Extra Space', 'Computer Lab', '', 'Sewing', 'Movement', '', '', '', ''],
+                    ['10:45-11:15', '', 'Health and Wellness Group with Harrison!', 'Computer Lab', '', 'Cooking Group', '', '', '', ''],
+                    ['11:15-11:45', 'Movement', '', 'Movement', 'Computer Lab', '', '', '', '', ''],
+                    ['11:45-12:15', 'Lunch 1', 'Lunch 1', 'Lunch 1', 'Staff Choice', 'Computer Lab', 'Lunch', 'Lunch', 'Lunch', 'Lunch'],
+                    ['12:15-12:45', 'Name that tune!', 'Fun Friday - Wii Games in the Extra Space', 'Name that tune!', 'Lunch 2', 'Lunch 2', '', '', '', ''],
+                    ['12:45-1:15', '', '', '', 'Sewing', 'Cooking Competition Videos', 'Tour', 'Capron Zoo', 'Capron Zoo', 'Ice Cream Social'],
+                    ['1:15-1:45', 'Staff Choice', 'Staff Choice', 'Staff Choice', '', '', '', '', '', ''],
+                    ['1:45-2:15', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time', 'Social/Leisure Time'],
+                    ['2:15-2:45', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)', 'Prepare for Dismissal (Bathroom, Gather belongings, Clean room)']
+                ]
+            }
+        };
+
+        const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+        
+        function populateTable(tableId, data, headers) {
+            const table = document.getElementById(tableId);
+            table.innerHTML = '';
+            const thead = document.createElement('thead');
+            const tr = document.createElement('tr');
+            headers.forEach(header => {
+                const th = document.createElement('th');
+                th.innerText = header;
+                tr.appendChild(th);
+            });
+            thead.appendChild(tr);
+            table.appendChild(thead);
+            const tbody = document.createElement('tbody');
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                row.forEach((cell, index) => {
+                    const td = document.createElement('td');
+                    td.innerHTML = cell;
+                    if (index > 0 && headers[index] !== 'Time') {
+                        const staff = schedules[headers[index]].staff.find(s => s.room === headers[index]);
+                        td.innerHTML += `<br><span class="staff">${staff ? staff.staff : ''}</span>`;
+                    }
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+        }
+
+        function updateSchedule(dayName) {
+            document.getElementById('day-title').innerText = `${dayName} Schedule`;
+            if (schedules[dayName]) {
+                const schedule = schedules[dayName];
+                populateTable('activities-table', schedule.activities, ['Time', 'Room 1', 'Room 2', 'Room 3', 'Room 4', 'Career Center', 'Room 5', 'Room 6', 'Room 7', 'Room 8']);
+            } else {
+                document.getElementById('activities-table').innerText = 'No schedule available for today.';
+            }
+        }
+
+        document.getElementById('day-select').addEventListener('change', (event) => {
+            updateSchedule(event.target.value);
+        });
+
+        // Initialize with the current day
+        const today = new Date().getDay();
+        const dayName = daysOfWeek[today - 1] || 'Monday';
+        document.getElementById('day-select').value = dayName;
+        updateSchedule(dayName);
+    </script>
+</body>
+</html>
